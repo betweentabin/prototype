@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>休憩シフト - Efficiency Expert</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 外部CSSファイルの読み込み -->
+  <link rel="stylesheet" href="/static/css/shift_index.styles.css" />
+  <link rel="stylesheet" href="/static/css/index.style.css" />
+  <!-- PDF.jsライブラリの読み込み -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+  
+  <!-- 外部JavaScriptファイルを読み込む -->
+  <script src="/static/js/shift_index.styles.js"></script>
+</head>
+<body>
+  <!-- ===== ヘッダーセクション ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="https://placehold.co/120x40/fff/000?text=Efficepart" alt="Efficepart Logo" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== ヒーローセクション ===== -->
+    <section class="hero">
+      <h1>Efficiency Expert</h1>
+      <p class="subtitle">目々進化するタスクの解決にはエフィスパート</p>
+      <button class="explore-btn">Explore</button>
+    </section>
+
+    <!-- ===== 機能カードセクション ===== -->
+    <section class="features">
+      <div class="feature-grid">
+        <!-- 各機能カード -->
+        <div class="feature-card" onclick="window.location.href='index-generator.html'">
+          <div class="icon">🌐</div>
+          <h3>目次生成</h3>
+          <p>Generates an index for manuals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✍️</div>
+          <h3>文章校正</h3>
+          <p>Proofreads and suggests content.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='shift-scheduler.html'">
+          <div class="icon">👥</div>
+          <h3>休憩シフト</h3>
+          <p>Creates optimized schedules.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">🏷️</div>
+          <h3>名札生成</h3>
+          <p>Generates name tags data.</p>
+        </div>        
+        <div class="feature-card" onclick="window.location.href='nametag-generator.html'">
+          <div class="icon">📄</div>
+          <h3>形式変換</h3>
+          <p>Converts file formats.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📦</div>
+          <h3>圧縮転送</h3>
+          <p>Compresses and shares files.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ここから下がPDFツールセクション -->
+    <!-- ============================== -->
+
+    <!-- ===== PDFツールフォームセクション ===== -->
+    <section class="form-section">
+      <!-- ヘッダーコンテナ -->
+      <div class="top-container">
+        <div class="left-container">
+          <div class="box1"></div>
+          <div class="box1box">
+            <span class="box1box-text">休憩シフト</span>
+          </div>
+        </div>
+        <div class="right-container">
+          <div class="box2"></div>
+          <div class="box3"></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツコンテナ -->
+      <div class="bottom-container">
+        <div class="box4">
+          <h2>「休暇シフト、手間なくスムーズに。」</h2>
+          <p class="form-description">
+            必要事項を入力することで、スタッフ全員の休暇回し用のシフトを
+            生成し、エクセルデータとしてダウンロードできるのでご自身で調整も可能。
+          </p>
+          <form class="shift-generator" action="/generate" method="POST" target="_blank">
+            <div class="form-group">
+              <label>1. スタッフ人数</label>
+              <input type="number" min="1" class="form-control" name="staff_count" required />
+            </div>
+            <div class="form-group">
+              <label>2. ポジション名</label>
+              <div class="position-inputs">
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    placeholder="ポジション名"
+                    class="form-control"
+                    name="position_names"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="button" class="add-btn" id="add-position">+ ポジション追加</button>
+            </div>
+            <div class="form-group">
+              <label>3. 臨時ポジション名</label>
+              <div class="temp-position-inputs"></div>
+              <button type="button" class="add-btn" id="add-extra-position">+ ポジション追加</button>
+            </div>
+            <div class="form-group">
+              <label>4. 勤務時間</label>
+              <div class="time-range">
+                <input
+                  type="time"
+                  class="form-control time-input"
+                  name="work_start"
+                  required
+                />
+                <span>~</span>
+                <input
+                  type="time"
+                  class="form-control time-input"
+                  name="work_end"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>5. 休憩まわし</label>
+              <div class="break-settings">
+                <div class="break-time">
+                  <label>A：休憩時間</label>
+                  <div class="input-group">
+                    <input
+                      type="number"
+                      value="30"
+                      step="15"
+                      min="15"
+                      max="120"
+                      class="form-control number-input"
+                      name="break_duration"
+                      required
+                      onchange="roundToFifteen(this)"
+                    />
+                    <span class="unit-label">分</span>
+                  </div>
+                </div>
+                <div class="break-period">
+                  <label>B：休憩時間帯</label>
+                  <div class="time-range">
+                    <input
+                      type="time"
+                      class="form-control time-input"
+                      name="break_start"
+                      required
+                    />
+                    <span>~</span>
+                    <input
+                      type="time"
+                      class="form-control time-input"
+                      name="break_end"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="additional-break">
+                  <label>C：個別休憩時間</label>
+                  <div class="radio-options">
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="exceptional_break"
+                        value="なし"
+                        checked
+                      />
+                      なし
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="exceptional_break" value="あり" />
+                      あり
+                    </label>
+                  </div>
+                  <div class="time-range break-details">
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        value="60"
+                        step="15"
+                        min="15"
+                        max="120"
+                        class="form-control number-input"
+                        name="exceptional_break_duration"
+                        onchange="roundToFifteen(this)"
+                      />
+                      <span class="unit-label">分</span>
+                    </div>
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        value="1"
+                        min="1"
+                        max="10"
+                        class="form-control number-input"
+                        name="exceptional_break_week"
+                      />
+                      <span class="unit-label">週目</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="generate-btn">休暇シフト生成</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== フッターセクション ===== -->
+  <footer>
+    <p>© 2025 by CARSON Co.,Ltd.</p>
+  </footer>
+  
+  <script>
+    // 入力値を15分単位で切り上げる関数
+    function roundToFifteen(input) {
+      let value = parseInt(input.value);
+      if (isNaN(value)) {
+        value = 15;
+      } else {
+        // 15分単位で切り上げ
+        value = Math.ceil(value / 15) * 15;
+        // 最小値と最大値の範囲内に収める
+        value = Math.max(15, Math.min(120, value));
+      }
+      input.value = value;
+    }
+  </script>
+</body>
+</html>

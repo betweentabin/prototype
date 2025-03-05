@@ -1,0 +1,181 @@
+/**
+ * 主なセクション:
+ * - 機能カード: 各機能を表示するカードのスタイル
+ */
+
+
+
+/* ===== シフト生成フォームのスタイル ===== */
+.shift-generator {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 2.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* 入力グループのスタイル */
+.input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.unit-label {
+  margin-left: 8px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: white;
+}
+
+.number-input {
+  width: 80px;
+  text-align: left;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139, 156, 219, 0.2);
+}
+
+.time-input {
+  width: 120px;
+}
+
+.time-range {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.position-inputs, .temp-position-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-wrapper .form-control {
+  flex-grow: 1;
+}
+
+.remove-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #ff5252;
+}
+
+.add-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.add-btn:hover {
+  background-color: transparent;
+  color: rgba(139, 156, 219, 0.7);
+}
+
+.break-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.break-time, .break-period, .additional-break {
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.radio-options {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.break-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  align-items: center;
+  display: none;
+}
+
+.generate-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 2rem auto 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.generate-btn:hover {
+  background-color: #7a8bc7;
+}
+
+.break-time label, .break-period label, .additional-break label {
+  color: var(--text-color);
+}
