@@ -30,7 +30,6 @@
             <li class="tab-item"><a class="tab-link" data-tab="background">背景</a></li>
             <li class="tab-item"><a class="tab-link" data-tab="font">フォント</a></li>
             <li class="tab-item"><a class="tab-link" data-tab="text-position">テキスト位置</a></li>
-            <li class="tab-item"><a class="tab-link" data-tab="output-format">出力形式</a></li>
           </ul>
           
           <!-- タブコンテンツ -->
@@ -51,8 +50,29 @@
             <div class="form-group">
               <label for="bg-color">背景色</label>
               <div class="color-picker">
-                <div class="color-preview" id="bg-color-preview" style="background-color: #ffffff;"></div>
                 <input type="color" id="bg-color" name="bg-color" value="#ffffff">
+                <div class="cmyk-controls">
+                  <div class="cmyk-slider">
+                    <label>C</label>
+                    <input type="range" id="bg-cyan" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>M</label>
+                    <input type="range" id="bg-magenta" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>Y</label>
+                    <input type="range" id="bg-yellow" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>K</label>
+                    <input type="range" id="bg-black" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -94,8 +114,29 @@
             <div class="form-group">
               <label for="font-color">フォント色</label>
               <div class="color-picker">
-                <div class="color-preview" id="font-color-preview" style="background-color: #000000;"></div>
                 <input type="color" id="font-color" name="font-color" value="#000000" class="line-specific-setting" data-setting-type="font-color">
+                <div class="cmyk-controls">
+                  <div class="cmyk-slider">
+                    <label>C</label>
+                    <input type="range" id="font-cyan" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>M</label>
+                    <input type="range" id="font-magenta" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>Y</label>
+                    <input type="range" id="font-yellow" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                  <div class="cmyk-slider">
+                    <label>K</label>
+                    <input type="range" id="font-black" min="0" max="100" value="0" class="cmyk-input">
+                    <span class="cmyk-value">0%</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -127,18 +168,6 @@
               <input type="number" id="vertical-position" name="vertical-position" value="0" min="-100" max="100" class="line-specific-setting" data-setting-type="vertical-position">
             </div>
           </div>
-          
-          <div class="tab-content" id="output-format">
-            <h3>出力形式設定</h3>
-            <div class="form-group">
-              <label for="format">ファイル形式</label>
-              <select id="format" name="format">
-                <option value="pdf">PDF</option>
-                <option value="png">PNG</option>
-                <option value="jpg">JPG</option>
-              </select>
-            </div>
-          </div>
         </div>
         
       </section>
@@ -151,13 +180,25 @@
             <!-- プレビュー内容はJavaScriptで動的に生成 -->
           </div>
         </div>
+        <div class="preview-buttons">
+          <div class="preview-buttons-top">
+            <button class="preview-btn" id="save-btn">トリムマーク非表示</button>
+            <button class="preview-btn" id="print-btn">トンボ非表示</button>
+          </div>
+        </div>
+        <div class="download-area">
+          <h3>ダウンロード形式</h3>
+          <div class="download-format-selector">
+            <select id="download-format" class="format-select">
+              <option value="pdf">PDF形式</option>
+              <option value="png">PNG形式</option>
+              <option value="jpg">JPG形式</option>
+            </select>
+            <button class="download-format-btn">ダウンロード</button>
+          </div>
+        </div>
       </section>
     </div>
   </main>
-  
-  <!-- ===== フッターセクション ===== -->
-  <footer>
-    <p>© 2025 by CARSON Co.,Ltd.</p>
-  </footer>
 </body>
 </html> 
