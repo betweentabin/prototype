@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== 保存期間選択の処理 =====
     const retentionOptions = document.querySelectorAll('.retention-option');
-    let selectedRetentionPeriod = '6'; // デフォルトは6時間
+    let selectedRetentionPeriod = '0.5'; // デフォルトは30分
     
     // 保存期間オプションのクリックイベント
     retentionOptions.forEach(option => {
@@ -74,12 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 保存期間の値からテキスト表示を取得する関数
     function getRetentionPeriodText(value) {
       const periodMap = {
+        '0.5': '30分',
+        '1': '1時間',
         '6': '6時間',
         '12': '12時間',
         '24': '24時間',
-        '72': '3日',
-        '120': '5日',
-        '168': '7日'
+        '48': '2日',
+        '72': '3日'
       };
       return periodMap[value] || '不明';
     }
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 選択された保存期間（時間）を数値に変換
         const selectedRadio = document.querySelector('input[name="retention_period"]:checked');
-        const retentionHours = parseInt(selectedRadio.value);
+        const retentionHours = parseFloat(selectedRadio.value);
         
         // ZIPファイル設定ボックスの表示/非表示を切り替え
         const zipContainer = document.getElementById('zip-container');
