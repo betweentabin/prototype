@@ -1,0 +1,144 @@
+/**
+ * 主なセクション:
+ * - 機能カード: 各機能を表示するカードのスタイル
+ */
+
+
+
+/* ===== ネームタグ機能カードのスタイル ===== */
+.features {
+  padding: 2rem 2rem;
+  background-color: var(--background-color);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 0.8rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: 0 2px 20px rgba(139, 156, 219, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 25px rgba(139, 156, 219, 0.2);
+  background-color: var(--background-color);
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.feature-card p {
+  font-size: 0.75rem;
+  margin-bottom: 0.3rem;
+}
+
+
+
+/* ===== ドラッグ＆ドロップのスタイル ===== */
+.drag-drop-container {
+  background-color: #f9f9f9;  /* 背景色: 薄いグレー */
+  border: 2px dashed #ccc;    /* 枠線: 2pxの破線、色は薄いグレー */
+  border-radius: 10px;        /* 角の丸み: 10px */
+  padding: 20px;              /* 内側の余白: 上下左右40px（より大きく） */
+  text-align: center;         /* テキスト配置: 中央揃え */
+  margin-top: 30px;           /* 上側の外余白: 30px */
+  cursor: pointer;            /* マウスカーソル: ポインター（クリック可能を示す） */
+  transition: all 0.3s ease;  /* トランジション: すべてのプロパティに0.3秒のイージング */
+}
+
+.drag-drop-container:hover {
+  background-color: #f0f5ff;  /* ホバー時の背景色: 薄い青 */
+  border-color: var(--secondary-color); /* ホバー時の枠線色: セカンダリカラー */
+}
+
+.drag-drop-container p {
+  margin: 0;                  /* 段落の余白: なし */
+  font-size: 1.2rem;          /* 文字サイズ: 1.2rem */
+  color: #666;                /* 文字色: 中間グレー */
+}
+
+.drag-drop-container::after {
+  content: "または、クリックしてファイルを選択";  /* 追加テキスト */
+  display: block;             /* 表示: ブロック要素として */
+  font-size: 0.9rem;          /* 文字サイズ: 0.9rem（小さめ） */
+  color: #999;                /* 文字色: 薄いグレー */
+  margin-top: 10px;           /* 上側の余白: 10px */
+}
+
+
+
+/* ===== テンプレートダウンロードボタンのスタイル ===== */
+.template-btn {
+  background-color: #e0e5f5; /* 背景色: 薄い青色に変更 */
+  color: #4a6bdf;            /* 文字色: プライマリカラーに変更 */
+  border: 1px solid #d0d8f0;  /* 枠線: 薄い色の細い枠線を追加 */
+  border-radius: 4px;         /* 角の丸み: 4pxに縮小 */
+  padding: 4px 10px;          /* 内側の余白: 上下4px、左右10pxに縮小 */
+  font-size: 0.75rem;         /* 文字サイズ: 0.75remに縮小 */
+  font-weight: normal;        /* 文字の太さ: 通常に変更 */
+  cursor: pointer;            /* マウスカーソル: ポインター */
+  transition: all 0.2s ease;  /* トランジション: すべてのプロパティに適用 */
+  position: absolute;         /* 位置: 絶対位置 */
+  right: 20px;                /* 右からの距離: 20px */
+  top: 50%;                   /* 上からの距離: 50% */
+  transform: translateY(-50%); /* Y軸方向の位置調整: 中央揃え */
+  z-index: 10;                /* 重なり順序: 前面に表示 */
+  box-shadow: none;           /* 影: なし */
+}
+
+.template-btn:hover {
+  background-color: #eef1fa; /* ホバー時の背景色: さらに薄い色 */
+  color: #5a79e5;            /* ホバー時の文字色: 少し濃い色 */
+}
+
+.template-btn:active {
+  background-color: #d0d8f0; /* クリック時の背景色: 少し濃い色 */
+}
+
+
+/* ===== アップロードボタンのスタイル ===== */
+.upload-button-container {
+  margin-top: 20px;           /* 上側の余白: 20px */
+  text-align: center;         /* テキスト配置: 中央揃え */
+}
+
+.upload-btn {
+  background-color: var(--primary-color, #4a6bdf); /* 背景色: プライマリカラー */
+  color: white;               /* 文字色: 白 */
+  border: none;               /* 枠線: なし */
+  border-radius: 5px;         /* 角の丸み: 5px */
+  padding: 12px 30px;         /* 内側の余白: 上下12px、左右30px */
+  font-size: 1rem;            /* 文字サイズ: 1rem */
+  font-weight: bold;          /* 文字の太さ: 太字 */
+  cursor: pointer;            /* マウスカーソル: ポインター */
+  transition: background-color 0.2s ease; /* トランジション: 背景色のみ変化 */
+  box-shadow: 0 2px 5px rgba(74, 107, 223, 0.2); /* 影: 控えめな影 */
+}
+
+.upload-btn:hover {
+  background-color: #7a8bc7; /* ホバー時の背景色: プライマリカラーより薄い色 */
+}
+
+.upload-btn:active {
+  background-color: #3a5bcf; /* クリック時の背景色: プライマリカラーより濃い色 */
+}

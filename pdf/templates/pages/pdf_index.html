@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- 日本語ページの設定 -->
+<html lang="ja">
+<head>
+  <title>PDFツール - Efficiency Expert</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 外部CSSファイルの読み込み - スタイルを別ファイルで管理 -->
+  <link rel="stylesheet" href="/static/css/index.style.css" />
+  <link rel="stylesheet" href="/static/css/pdf_index.styles.css" />
+  <!-- PDF.jsライブラリの読み込み - PDFファイルの表示・操作に必要 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+  
+  <!-- 外部JavaScriptファイルを読み込む - 機能の実装 -->
+  <script src="/static/js/pdf_index.style.js"></script>
+</head>
+<body>
+  <!-- ===== ヘッダーセクション - サイト上部のナビゲーション ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="https://placehold.co/120x40/fff/000?text=Efficepart" alt="Efficepart Logo" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== ヒーローセクション - サイトのメインビジュアル部分 ===== -->
+    <section class="hero">
+      <h1>Efficiency Expert</h1>
+      <p class="subtitle">目々進化するタスクの解決にはエフィスパート</p>
+      <button class="explore-btn">Explore</button>
+    </section>
+
+    <!-- ===== 機能カードセクション - サイトの主要機能一覧 ===== -->
+    <section class="features">
+      <div class="feature-grid">
+        <!-- 各機能カード - クリックで対応ページに移動 -->
+        <div class="feature-card" onclick="window.location.href='index-generator.html'">
+          <div class="icon">🌐</div>
+          <h3>目次生成</h3>
+          <p>Generates an index for manuals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✍️</div>
+          <h3>文章校正</h3>
+          <p>Proofreads and suggests content.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='shift-scheduler.html'">
+          <div class="icon">👥</div>
+          <h3>休憩シフト</h3>
+          <p>Creates optimized schedules.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">🏷️</div>
+          <h3>名札生成</h3>
+          <p>Generates name tags data.</p>
+        </div>        
+        <div class="feature-card" onclick="window.location.href='nametag-generator.html'">
+          <div class="icon">📄</div>
+          <h3>形式変換</h3>
+          <p>Converts file formats.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📦</div>
+          <h3>圧縮転送</h3>
+          <p>Compresses and shares files.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ここから下がPDFツールセクション - PDFファイル処理機能の本体 -->
+    <!-- ============================== -->
+
+    <!-- ===== PDFツールフォームセクション - PDF処理機能のUI ===== -->
+    <section class="form-section">
+      <!-- ヘッダーコンテナ - デザイン用の装飾ボックス -->
+      <div class="top-container">
+        <div class="left-container">
+          <div class="box1"></div>
+          <div class="box1box">
+            <span class="box1box-text">PDFツール</span>
+          </div>
+        </div>
+        <div class="right-container">
+          <div class="box2"></div>
+          <div class="box3"></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツコンテナ - PDF処理機能の本体 -->
+      <div class="bottom-container">
+        <div class="box4">
+          <h2>「PDFファイル、簡単一括処理。」</h2>
+          <p class="form-description">
+            PDFファイルの結合、分割、抽出、削除の処理を一括で実行。
+          </p>
+
+          <!-- ===== PDF機能カード - 各PDF処理機能の選択肢 ===== -->
+          <div class="pdf-functions">
+            <!-- PDF結合機能カード - 複数PDFを1つに結合 -->
+            <div class="pdf-function-card" onclick="showPdfTool('combine')">
+              <div class="pdf-icon">🔗</div>
+              <h3>PDF結合</h3>
+              <p>複数のPDFファイルを1つに結合します</p>
+            </div>
+            
+            <!-- PDF分割機能カード - 1つのPDFを複数に分割 -->
+            <div class="pdf-function-card" onclick="showPdfTool('split')">
+              <div class="pdf-icon">✂️</div>
+              <h3>PDF分割</h3>
+              <p>PDFファイルを複数に分割します</p>
+            </div>
+            
+            <!-- PDF抽出機能カード - PDFから特定ページを抽出 -->
+            <div class="pdf-function-card" onclick="showPdfTool('extract')">
+              <div class="pdf-icon">🔍</div>
+              <h3>PDF抽出</h3>
+              <p>PDFから特定のページを抽出します</p>
+            </div>
+            
+            <!-- PDF削除機能カード - PDFから特定ページを削除 -->
+            <div class="pdf-function-card" onclick="showPdfTool('delete')">
+              <div class="pdf-icon">🗑️</div>
+              <h3>PDF削除</h3>
+              <p>PDFから特定のページを削除します</p>
+            </div>
+          </div>
+          
+          <!-- ===== PDF機能セクション - 各機能の詳細UI（初期状態は非表示） ===== -->
+          <div id="pdf-tool-sections" class="pdf-tool-sections" style="display: none;">
+            <!-- PDF結合セクション - 複数PDFファイルを1つに結合するUI -->
+            <div id="pdf-combine-section" class="pdf-tool-section">
+              <h2>PDF 結合</h2>
+              <form id="combineForm" action="/combine" method="post" enctype="multipart/form-data">
+                <!-- ファイルアップロード部分 - PDFファイル選択UI -->
+                <div class="pdf-upload-container">
+                  <label class="pdf-upload-button">
+                    <span class="plus-icon">+</span>
+                    <span>PDFを追加</span>
+                    <input type="file" id="pdfUpload" accept=".pdf" data-preview="pdfPreview" style="display: none;" multiple>
+                  </label>
+                </div>
+                <!-- プレビュー部分 - 選択したPDFファイルの表示 -->
+                <div id="pdfPreview" style="display: none;">
+                  <p>選択されたファイル: <span class="file-name"></span></p>
+                  <div class="preview-scroll" style="overflow-y: auto;">
+                    <div id="pdfCombinePreview">
+                      <div class="pdf-list" style="width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="pdf-controls">
+                    <button type="submit">PDFを結合する</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- PDF分割セクション - PDFファイルを複数に分割するUI -->
+            <div id="pdf-split-section" class="pdf-tool-section">
+              <h2>PDF 分割</h2>
+              <form id="splitForm" action="/split" method="post" enctype="multipart/form-data">
+                <div class="pdf-upload-container">
+                  <label class="pdf-upload-button">
+                    <span class="plus-icon">+</span>
+                    <span>PDFを選択</span>
+                    <input type="file" name="pdf_file" id="pdfFile" accept=".pdf" data-preview="pagePreview" required style="display: none;">
+                  </label>
+                </div>
+                <div id="pagePreview" style="display: none;">
+                  <p>選択されたファイル: <span class="file-name"></span></p>
+                  <p>総ページ数: <span id="totalPages">-</span>ページ</p>
+                  <div class="preview-scroll" style="overflow-y: auto;">
+                    <div id="pdfPreviewContainer">
+                      <div id="pageContainer" class="page-container"></div>
+                    </div>
+                  </div>
+                  <div class="split-info"></div>
+                  <div class="pdf-controls">
+                    <button type="button" id="selectAllSplit">全分割</button>
+                    <button type="button" id="resetSplits">分割線をリセット</button>
+                    <button type="submit">PDFを分割する</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- PDF抽出セクション - PDFから特定ページを抽出するUI -->
+            <div id="pdf-extract-section" class="pdf-tool-section">
+              <h2>PDF 抽出</h2>
+              <form id="extractForm" action="/extract" method="post" enctype="multipart/form-data">
+                <div class="pdf-upload-container">
+                  <label class="pdf-upload-button">
+                    <span class="plus-icon">+</span>
+                    <span>PDFを選択</span>
+                    <input type="file" name="pdf_file" id="extractFile" accept=".pdf" data-preview="extractPreview" required style="display: none;">
+                  </label>
+                </div>
+                <div id="extractPreview" style="display: none;">
+                  <p>選択されたファイル: <span class="file-name"></span></p>
+                  <p>総ページ数: <span id="extractTotalPages">-</span>ページ</p>
+                  <div class="preview-scroll" style="overflow-y: auto;">
+                    <div id="pdfExtractPreview">
+                      <div id="extractPageContainer" class="page-container"></div>
+                    </div>
+                  </div>
+                  <div class="extract-info"></div>
+                  <div class="pdf-controls">
+                    <button type="button" id="selectAllExtract">全選択</button>
+                    <button type="button" id="resetExtract">選択をリセット</button>
+                    <button type="submit">PDFを保存する</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- PDF削除セクション - PDFから特定ページを削除するUI -->
+            <div id="pdf-delete-section" class="pdf-tool-section">
+              <h2>PDF 削除</h2>
+              <form id="deleteForm" action="/delete" method="post" enctype="multipart/form-data">
+                <div class="pdf-upload-container">
+                  <label class="pdf-upload-button">
+                    <span class="plus-icon">+</span>
+                    <span>PDFを選択</span>
+                    <input type="file" name="pdf_file" id="deleteFile" accept=".pdf" data-preview="deletePreview" required style="display: none;">
+                  </label>
+                </div>
+                <div id="deletePreview" style="display: none;">
+                  <p>選択されたファイル: <span class="file-name"></span></p>
+                  <p>総ページ数: <span id="deleteTotalPages">-</span>ページ</p>
+                  <div class="preview-scroll" style="overflow-y: auto;">
+                    <div id="pdfDeletePreview">
+                      <div id="deletePageContainer" class="page-container"></div>
+                    </div>
+                  </div>
+                  <div class="delete-info"></div>
+                  <div class="pdf-controls">
+                    <button type="button" id="selectAllDelete">全選択</button>
+                    <button type="button" id="resetDelete">選択をリセット</button>
+                    <button type="submit">PDFを保存する</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== フッターセクション - サイト下部の著作権表示 ===== -->
+  <footer>
+    <p>© 2025 by CARSON Co.,Ltd.</p>
+  </footer>
+</body>
+</html>

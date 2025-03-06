@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>圧縮転送 - Efficiency Expert</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 外部CSSファイルの読み込み -->
+  <link rel="stylesheet" href="/static/css/index.style.css" />
+  <link rel="stylesheet" href="/static/css/transfer_index.styles.css" />
+  <!-- PDF.jsライブラリの読み込み -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+  
+  <!-- 外部JavaScriptファイルを読み込む -->
+  <script src="/static/js/transfer_index.tyles.js"></script>
+</head>
+<body>
+  <!-- ===== ヘッダーセクション ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="https://placehold.co/120x40/fff/000?text=Efficepart" alt="Efficepart Logo" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== ヒーローセクション ===== -->
+    <section class="hero">
+      <h1>Efficiency Expert</h1>
+      <p class="subtitle">目々進化するタスクの解決にはエフィスパート</p>
+      <button class="explore-btn">Explore</button>
+    </section>
+
+    <!-- ===== 機能カードセクション ===== -->
+    <section class="features">
+      <div class="feature-grid">
+        <!-- 各機能カード -->
+        <div class="feature-card" id="indexcard" data-card-type="目次生成" onclick="window.location.href='index-generator.html'">
+          <div class="icon">🌐</div>
+          <h3>目次生成</h3>
+          <p>Generates an index for manuals.</p>
+        </div>
+        <div class="feature-card" id="proofreadcard" data-card-type="文章校正">
+          <div class="icon">✍️</div>
+          <h3>文章校正</h3>
+          <p>Proofreads and suggests content.</p>
+        </div>
+        <div class="feature-card" id="breakcard" data-card-type="休憩シフト" onclick="window.location.href='shift-scheduler.html'">
+          <div class="icon">👥</div>
+          <h3>休憩シフト</h3>
+          <p>Creates optimized schedules.</p>
+        </div>
+        <div class="feature-card" id="namecard" data-card-type="名札生成" onclick="window.location.href='nametag-manual-form.html'">
+          <div class="icon">🏷️</div>
+          <h3>名札生成</h3>
+          <p>Generates name tags data.</p>
+        </div>        
+        <div class="feature-card" id="formatcard" data-card-type="形式変換" onclick="window.location.href='nametag-generator.html'">
+          <div class="icon">📄</div>
+          <h3>形式変換</h3>
+          <p>Converts file formats.</p>
+        </div>
+        <div class="feature-card" id="compresscard" data-card-type="圧縮転送">
+          <div class="icon">📦</div>
+          <h3>圧縮転送</h3>
+          <p>Compresses and shares files.</p>
+        </div>
+        <div class="feature-card" id="pdftool1" data-card-type="PDFツール" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+        <div class="feature-card" id="pdftool2" data-card-type="PDFツール" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+      </div>
+    </section>
+
+
+    
+    <!-- ここから下が圧縮転送セクション -->
+    <!-- ============================== -->
+
+    <!-- ===== 圧縮転送フォームセクション ===== -->
+    <section class="form-section">
+      <!-- ヘッダーコンテナ -->
+      <div class="top-container">
+        <div class="left-container">
+          <div class="box1"></div>
+          <div class="box1box">
+            <span class="box1box-text">圧縮転送</span>
+          </div>
+        </div>
+        <div class="right-container">
+          <div class="box2"></div>
+          <div class="box3"></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツコンテナ -->
+      <div class="bottom-container">
+        <div class="box4">
+          <h2>「ファイル圧縮、簡単に共有。」</h2>
+          <p class="form-description">
+            大容量ファイルを簡単に圧縮して共有。複数のファイルをまとめて圧縮し、安全かつ効率的に転送できます。
+          </p>
+
+          <!-- 保存期間選択エリア -->
+          <div class="retention-period-container">
+            <div class="retention-period-title">保存期間</div>
+            <div class="retention-period-options">
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="6" checked>
+                <span class="retention-text">6時間</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="12">
+                <span class="retention-text">12時間</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="24">
+                <span class="retention-text">24時間</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="72">
+                <span class="retention-text">3日</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="120">
+                <span class="retention-text">5日</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="168">
+                <span class="retention-text">7日</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- ドラッグ&ドロップコンテナ -->
+          <div class="drag-drop-container">
+            <p>ファイルをここにドラッグ&ドロップ</p>
+            <input type="file" id="file-upload" multiple style="display: none;" />
+          </div>
+          
+          <!-- アップロードボタン -->
+          <div class="upload-button-container">
+            <button id="upload-button" class="upload-btn">アップロード</button>
+          </div>
+          
+          <!-- 圧縮オプション選択ボックス（初期状態では非表示） -->
+          <div id="result-container" class="result-container">
+            <div class="result-header">
+              <div class="result-title">共有オプション設定</div>
+            </div>
+            <div id="result-contents">
+              <!-- .result-contentはJavaScriptで動的に生成されます -->
+            </div>
+          </div>
+          
+          <!-- 共有設定の注意書き（ボックスの外に移動） -->
+          <div class="sharing-notes">
+            <p>※共有に関する注意事項</p>
+            <ul>
+              <li>URLは保存期間内のみ有効です</li>
+              <li>パスワードを設定すると、ダウンロード時にパスワードが必要になります</li>
+              <li>QRコードを使用すると、モバイルデバイスからも簡単にアクセスできます</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== フッターセクション ===== -->
+  <footer>
+    <p>© 2025 by CARSON Co.,Ltd.</p>
+  </footer>
+</body>
+</html> 

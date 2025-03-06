@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シフト表</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shift_table.styles.css') }}">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        /* 行の高さを統一するスタイルを追加 */
+        tbody tr {
+            height: 40px; /* ここで希望の高さを指定 */
+        }
+    </style>
+    <script src="{{ url_for('static', filename='js/shift_table.styles.js') }}"></script>
+</head>
+<body>
+    <div class="download-buttons">
+        <button class="download-button" onclick="downloadExcel()">Excelでダウンロード</button>
+        <button class="download-button" onclick="downloadJPEG()">JPEGでダウンロード</button>
+    </div>
+    <table id="shift-table">
+        <thead>
+            <tr>
+                <th></th>  <!-- 「時間」の文字を消して空白にする -->
+                {% for i in range(1, staff_count + 1) %}  <!-- 左から右にスタッフ番号を表示 -->
+                <th>{{ i | to_circle_number }}</th>  <!-- スタッフ番号 -->
+                {% endfor %}
+            </tr>
+            <!-- 「名前」の文字を追加 -->
+            <tr class="staff-name-row">
+                <th>名前</th>  <!-- 「名前」の文字を追加 -->
+                {% for i in range(1, staff_count + 1) %}  <!-- 左から右に空白セルを表示 -->
+                <td></td>  <!-- スタッフ名用の空白セル -->
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in shift_table %}
+            <tr>
+                <td>{{ row.time }}</td>
+                {% for i in range(1, staff_count + 1) %}  <!-- 左から右にセルを表示 -->
+                <td data-status="{{ row['staff_' ~ i] }}">
+                    {{ row['staff_' ~ i] }}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

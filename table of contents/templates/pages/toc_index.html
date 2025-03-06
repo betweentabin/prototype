@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>目次生成 - Efficiency Expert</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 外部CSSファイルの読み込み -->
+  <link rel="stylesheet" href="/static/css/index.style.css" />
+  <link rel="stylesheet" href="/static/css/toc_index.styles.css" />
+  <!-- PDF.jsライブラリの読み込み -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+  
+  <!-- 外部JavaScriptファイルを読み込む -->
+  <script src="/static/js/toc_index.tyles.js"></script>
+</head>
+<body>
+  <!-- ===== ヘッダーセクション ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="https://placehold.co/120x40/fff/000?text=Efficepart" alt="Efficepart Logo" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== ヒーローセクション ===== -->
+    <section class="hero">
+      <h1>Efficiency Expert</h1>
+      <p class="subtitle">目々進化するタスクの解決にはエフィスパート</p>
+      <button class="explore-btn">Explore</button>
+    </section>
+
+    <!-- ===== 機能カードセクション ===== -->
+    <section class="features">
+      <div class="feature-grid">
+        <!-- 各機能カード -->
+        <div class="feature-card" id="indexcard" data-card-type="目次生成" onclick="window.location.href='index-generator.html'">
+          <div class="icon">🌐</div>
+          <h3>目次生成</h3>
+          <p>Generates an index for manuals.</p>
+        </div>
+        <div class="feature-card" id="proofreadcard" data-card-type="文章校正">
+          <div class="icon">✍️</div>
+          <h3>文章校正</h3>
+          <p>Proofreads and suggests content.</p>
+        </div>
+        <div class="feature-card" id="breakcard" data-card-type="休憩シフト" onclick="window.location.href='shift-scheduler.html'">
+          <div class="icon">👥</div>
+          <h3>休憩シフト</h3>
+          <p>Creates optimized schedules.</p>
+        </div>
+        <div class="feature-card" id="namecard" data-card-type="名札生成" onclick="window.location.href='nametag-manual-form.html'">
+          <div class="icon">🏷️</div>
+          <h3>名札生成</h3>
+          <p>Generates name tags data.</p>
+        </div>        
+        <div class="feature-card" id="formatcard" data-card-type="形式変換" onclick="window.location.href='nametag-generator.html'">
+          <div class="icon">📄</div>
+          <h3>形式変換</h3>
+          <p>Converts file formats.</p>
+        </div>
+        <div class="feature-card" id="compresscard" data-card-type="圧縮転送">
+          <div class="icon">📦</div>
+          <h3>圧縮転送</h3>
+          <p>Compresses and shares files.</p>
+        </div>
+        <div class="feature-card" id="pdftool1" data-card-type="PDFツール" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+        <div class="feature-card" id="pdftool2" data-card-type="PDFツール" onclick="window.location.href='pdf_index.html'">
+          <div class="icon">📑</div>
+          <h3>PDFツール</h3>
+          <p>Edit and process PDF files.</p>
+        </div>
+      </div>
+    </section>
+
+
+    
+    <!-- ここから下が目次生成セクション -->
+    <!-- ============================== -->
+
+    <!-- ===== 目次生成フォームセクション ===== -->
+    <section class="form-section">
+      <!-- ヘッダーコンテナ -->
+      <div class="top-container">
+        <div class="left-container">
+          <div class="box1"></div>
+          <div class="box1box">
+            <span class="box1box-text">目次生成</span>
+          </div>
+        </div>
+        <div class="right-container">
+          <div class="box2"></div>
+          <div class="box3"></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツコンテナ -->
+      <div class="bottom-container">
+        <div class="box4">
+          <h2>「マニュアルの目次、自動で完成。」</h2>
+          <p class="form-description">
+            マニュアルのテキストを入力することで、見やすい目次を自動生成。 階層構造を解析し、整理された目次データをエクセル形式でダウンロード可能。
+          </p>
+
+          <!-- ドラッグ&ドロップコンテナ -->
+          <div class="drag-drop-container">
+            <p>PowerPointファイルをここにドラッグ&ドロップ</p>
+            <input type="file" id="file-upload" accept=".xlsx, .xls" style="display: none;" />
+          </div>
+          
+          <!-- アップロードボタン -->
+          <div class="upload-button-container">
+            <button id="upload-button" class="upload-btn">アップロード</button>
+          </div>
+          
+          <!-- フォントサイズ選択ボックス（初期状態では非表示） -->
+          <div id="result-container" class="result-container">
+            <div class="result-header">
+              <div class="result-title">目次のフォントサイズ設定</div>
+              <button id="generate-btn" class="download-btn">目次を生成</button>
+            </div>
+            <div class="result-content">
+              <div class="form-group">
+                <label>目次フォントサイズ</label>
+                <div class="position-inputs" id="position-inputs">
+                  <div class="input-wrapper">
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        placeholder="フォントサイズ（pt）"
+                        class="form-control first-input"
+                        name="position_names"
+                        value=""
+                        min="1"
+                        max="100"
+                        required
+                        autocomplete="off"
+                      />
+                      <div class="bold-select">
+                        <select class="font-style-select" name="font-style">
+                          <option value="normal">通常</option>
+                          <option value="bold" selected>太字</option>
+                        </select>
+                      </div>
+                    </div>
+                    <!-- 1行目には削除ボタンがないため、スペースを確保 -->
+                    <div style="width: 24px; margin-left: 10px;"></div>
+                  </div>
+                </div>
+                
+                <!-- フォントサイズ追加ボタン -->
+                <button type="button" class="add-btn" id="add-position">+ フォントサイズ追加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== フッターセクション ===== -->
+  <footer>
+    <p>© 2025 by CARSON Co.,Ltd.</p>
+  </footer>
+</body>
+</html> 

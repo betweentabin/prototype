@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* テーブルのレイアウトを固定 */
+}
+
+/* すべての縦線を太線に変更 */
+table, th, td {
+    border-left: 2px solid #000; /* 左側の縦線を太線に */
+    border-right: 2px solid #000; /* 右側の縦線を太線に */
+}
+
+/* 1行目の上下左右をすべて太線にする */
+thead tr:first-child th {
+    border-top: 2px solid #000; /* 上の線を太線に */
+    border-bottom: 2px solid #000; /* 下の線を太線に */
+    border-left: 2px solid #000; /* 左の線を太線に */
+    border-right: 2px solid #000; /* 右の線を太線に */
+}
+
+/* 「名前」の行の下線を太線にする */
+tr.staff-name-row th,
+tr.staff-name-row td {
+    border-bottom: 2px solid #000 !important; /* 下の線を太線に */
+}
+
+/* 3行目の上線を太線にする（1列目も含む） */
+tbody tr:first-child td,
+tbody tr:first-child th {
+    border-top: 2px solid #000 !important; /* 上の線を太線に */
+}
+
+/* 1時間ごとの横線を太線に変更 */
+tbody tr:nth-child(4n) td {
+    border-bottom: 2px solid #000; /* 4行ごとに太線を追加 */
+}
+
+/* テーブルの最後の行の下線を太線にする */
+tbody tr:last-child td {
+    border-bottom: 2px solid #000 !important; /* 最後の行の下線を必ず太線に */
+}
+
+/* その他の横線は薄い線にする */
+tbody tr td {
+    border-bottom: 1px solid #ddd; /* 薄い線 */
+}
+
+/* 時間列のスタイル */
+td:first-child,
+th:first-child {
+    width: 80px; /* 時間列の幅を80pxに固定 */
+    border-left: none; /* 時間列の左側の線を消す */
+}
+
+/* スタッフ番号の列（薄いグレー） */
+th:not(:first-child) {
+    background-color: #f2f2f2; /* 薄いグレー */
+    width: calc((100% - 80px) / 5); /* 残りの幅を均等に分割 */
+}
+
+/* スタッフ名を手書きするための空白行 */
+tr.staff-name-row td {
+    height: 40px; /* 空白行の高さを30pxから40pxに増加 */
+}
+
+/* すべてのセルのテキストを中央揃えにする */
+th, td {
+    text-align: center;
+}
+
+/* モーダルウィンドウのスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+.position-button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* セルをクリック可能に見せる */
+td[data-status] {
+    cursor: pointer;
+}
+
+td[data-status]:hover {
+    opacity: 0.8;
+}
+
+/* スタッフ名セルのスタイル */
+.staff-name-row td {
+    cursor: pointer;
+    font-weight: bold;  /* フォントを太くする */
+}
+
+.staff-name-row td:hover {
+    background-color: #f8f8f8;
+}
+
+.staff-name-row input {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 2px;
+}
+
+/* ダウンロードボタンのスタイル */
+.download-buttons {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.download-button {
+    background-color: #8B9CDB; /* メインカラー（青紫） */
+    color: white;
+    border: none;
+    border-radius: 30px; /* 角丸の半径 */
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 10px;
+    min-width: 200px;
+}
+
+.download-button:hover {
+    background-color: #7a8bc7;
+} 
