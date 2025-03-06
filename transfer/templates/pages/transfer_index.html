@@ -115,6 +115,14 @@
             <div class="retention-period-title">保存期間</div>
             <div class="retention-period-options">
               <label class="retention-option">
+                <input type="radio" name="retention_period" value="0.5">
+                <span class="retention-text">30分</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="1">
+                <span class="retention-text">1時間</span>
+              </label>
+              <label class="retention-option">
                 <input type="radio" name="retention_period" value="6" checked>
                 <span class="retention-text">6時間</span>
               </label>
@@ -124,19 +132,15 @@
               </label>
               <label class="retention-option">
                 <input type="radio" name="retention_period" value="24">
-                <span class="retention-text">24時間</span>
+                <span class="retention-text">1日</span>
+              </label>
+              <label class="retention-option">
+                <input type="radio" name="retention_period" value="48">
+                <span class="retention-text">2日</span>
               </label>
               <label class="retention-option">
                 <input type="radio" name="retention_period" value="72">
                 <span class="retention-text">3日</span>
-              </label>
-              <label class="retention-option">
-                <input type="radio" name="retention_period" value="120">
-                <span class="retention-text">5日</span>
-              </label>
-              <label class="retention-option">
-                <input type="radio" name="retention_period" value="168">
-                <span class="retention-text">7日</span>
               </label>
             </div>
           </div>
@@ -159,6 +163,74 @@
             </div>
             <div id="result-contents">
               <!-- .result-contentはJavaScriptで動的に生成されます -->
+            </div>
+          </div>
+          
+          <!-- ZIPファイル設定ボックス（初期状態では非表示） -->
+          <div id="zip-container" class="result-container" style="display: none;">
+            <div class="result-header">
+              <div class="result-title">ZIPファイル設定</div>
+            </div>
+            <div class="zip-content">
+              <div class="zip-info">
+                <div class="zip-filename">
+                  <div class="zip-input-group">
+                    <input type="text" id="zip-filename" class="form-control" placeholder="ZIPファイル名を入力してください" oninput="updateZipDisplayFilename(this.value)">
+                    <span class="zip-extension">.zip</span>
+                  </div>
+                </div>
+                <div class="zip-password">
+                  <div class="input-group password-group">
+                    <input type="text" id="zip-password" class="form-control" placeholder="パスワードを入力（任意）">
+                    <button class="generate-password-btn" data-target="zip-password">自動生成</button>
+                    <button class="copy-btn copy-password-btn" data-target="zip-password">コピー</button>
+                  </div>
+                </div>
+              </div>
+              <div class="zip-button-container">
+                <button class="zip-create-btn" id="zip-create-button">ZIPファイルを作成</button>
+              </div>
+              <div class="form-group zip-share-info" style="margin-top: 20px; display: none;">
+                <div class="uploaded-file-info">
+                  <div class="uploaded-filename">
+                    <span id="zip-display-filename"></span>
+                    <span id="zip-expiry-time" style="font-size: 0.85rem; color: #666; margin-left: 10px;"></span>
+                  </div>
+                </div>
+                
+                <div class="position-inputs">
+                  <div class="input-wrapper">
+                    <div class="input-group url-display">
+                      <input type="text" class="form-control first-input share-url" id="zip-share-url" readonly />
+                      <button class="copy-btn copy-url-btn" data-target="zip-share-url">コピー</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="position-inputs">
+                  <div class="input-wrapper">
+                    <div class="input-group password-group">
+                      <input type="text" class="form-control download-password" id="zip-download-password" placeholder="パスワードを入力（任意）" />
+                      <button class="generate-password-btn" data-target="zip-download-password">自動生成</button>
+                      <button class="copy-btn copy-password-btn" data-target="zip-download-password">コピー</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="position-inputs">
+                  <div class="input-wrapper">
+                    <div class="qr-container">
+                      <button class="qr-display-btn" data-target="zip-qr">QRコードを表示</button>
+                      <div class="qr-code" id="zip-qr-code" style="display: none;">
+                        <div class="qr-placeholder">QRコードを生成中...</div>
+                      </div>
+                      <div class="qr-options" id="zip-qr-options" style="display: none;">
+                        <button class="qr-btn download-qr-btn" data-target="zip-qr">QRコードを保存</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           

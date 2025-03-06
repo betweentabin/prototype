@@ -62,7 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 選択された保存期間を更新
         selectedRetentionPeriod = radioInput.value;
-        console.log(`保存期間が${getRetentionPeriodText(selectedRetentionPeriod)}に設定されました`);
+        
+        // ZIP共有情報が表示されている場合は期限を更新
+        const zipShareInfo = document.querySelector('.zip-share-info');
+        if (zipShareInfo && zipShareInfo.style.display !== 'none') {
+          updateZipExpiryTime();
+        }
       });
     });
     
@@ -185,11 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
           uploadButton.textContent = '処理中...';
           uploadButton.disabled = true;
 
-          // アップロード時の時間を記録
+          // 未アップロードのファイルにのみアップロード時間を設定
           const uploadTime = new Date();
           selectedFiles = selectedFiles.map(fileObj => ({
             ...fileObj,
-            uploadTime: uploadTime
+            uploadTime: fileObj.uploadTime || uploadTime
           }));
           
           // 実際のファイル処理はここに実装（現在はモック）
@@ -200,6 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // ボタンを元に戻す
             uploadButton.textContent = 'アップロード';
             uploadButton.disabled = false;
+
+            // ドラッグ&ドロップエリアをリセット
+            dragDropContainer.innerHTML = '<p>ファイルをここにドラッグ&ドロップ</p>';
+            selectedFiles = [];
           }, 1500); // 1.5秒後に結果を表示
         } else {
           // ファイルが選択されていない場合
@@ -220,11 +229,30 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 結果コンテンツをクリア
         const resultContents = document.getElementById('result-contents');
-        resultContents.innerHTML = '';
+        if (!resultContents.hasChildNodes()) {
+          resultContents.innerHTML = '';
+        }
         
         // 選択された保存期間（時間）を数値に変換
         const selectedRadio = document.querySelector('input[name="retention_period"]:checked');
         const retentionHours = parseInt(selectedRadio.value);
+        
+        // ZIPファイル設定ボックスの表示/非表示を切り替え
+        const zipContainer = document.getElementById('zip-container');
+        if (zipContainer) {
+          // 結果コンテンツ内のファイル数を数える
+          const totalFiles = resultContents.querySelectorAll('.result-content').length + selectedFiles.length;
+          
+          // ファイルが2つ以上の場合はZIPファイル設定ボックスを表示
+          if (totalFiles >= 2) {
+            zipContainer.style.display = 'block';
+            // ZIPファイル名の入力欄をクリア
+            const zipFilenameInput = document.getElementById('zip-filename');
+            if (zipFilenameInput) {
+              zipFilenameInput.value = '';
+            }
+          }
+        }
         
         // 各ファイルに対して.result-contentを生成
         selectedFiles.forEach((fileObj, index) => {
@@ -519,6 +547,145 @@ document.addEventListener('DOMContentLoaded', () => {
           toggleQrBtn.classList.add('active');
         }
       });
+    }
+
+    // ===== ZIPファイル関連の処理 =====
+    const zipCreateButton = document.getElementById('zip-create-button');
+    const zipFilenameInput = document.getElementById('zip-filename');
+    const zipDisplayFilename = document.getElementById('zip-display-filename');
+    const zipExpiryTime = document.getElementById('zip-expiry-time');
+    const zipShareInfo = document.querySelector('.zip-share-info');
+    const zipShareUrl = document.getElementById('zip-share-url');
+    const zipQrDisplayBtn = document.querySelector('[data-target="zip-qr"]');
+    const zipQrCode = document.getElementById('zip-qr-code');
+    const zipQrOptions = document.getElementById('zip-qr-options');
+
+    // 自動ファイル名を生成する関数
+    function generateDefaultZipFilename() {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        }).replace(/\//g, '');
+        const timeStr = now.toLocaleTimeString('ja-JP', {
+            hour: '2-digit',
+            minute: '2-digit'
+        }).replace(/:/g, '');
+        const randomStr = generateRandomString(4);
+        return `archive_${dateStr}_${timeStr}_${randomStr}`;
+    }
+
+    // ZIPファイル名入力時の処理
+    if (zipFilenameInput) {
+        zipFilenameInput.addEventListener('input', (e) => {
+            // 入力時のファイル名表示更新を削除
+        });
+    }
+
+    // ZIPファイルのQRコード表示/非表示の処理
+    if (zipQrDisplayBtn && zipQrCode && zipQrOptions) {
+        zipQrDisplayBtn.addEventListener('click', () => {
+            const isVisible = zipQrCode.style.display !== 'none';
+            
+            if (isVisible) {
+                zipQrCode.style.display = 'none';
+                zipQrOptions.style.display = 'none';
+                zipQrDisplayBtn.textContent = 'QRコードを表示';
+                zipQrDisplayBtn.classList.remove('active');
+            } else {
+                zipQrCode.style.display = 'block';
+                zipQrOptions.style.display = 'flex';
+                zipQrDisplayBtn.textContent = 'QRコードを非表示';
+                zipQrDisplayBtn.classList.add('active');
+
+                // QRコードを生成
+                const shareUrl = document.getElementById('zip-share-url').value;
+                if (shareUrl) {
+                    zipQrCode.innerHTML = `
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(shareUrl)}&size=120x120" 
+                             alt="QRコード" width="120" height="120">
+                    `;
+                } else {
+                    zipQrCode.innerHTML = '<div class="qr-placeholder">共有URLが生成されていません</div>';
+                }
+            }
+        });
+
+        // QRコードダウンロードボタンの処理
+        const zipQrDownloadBtn = document.querySelector('[data-target="zip-qr"].download-qr-btn');
+        if (zipQrDownloadBtn) {
+            zipQrDownloadBtn.addEventListener('click', () => {
+                const shareUrl = document.getElementById('zip-share-url').value;
+                if (shareUrl) {
+                    // 実際のダウンロード処理をここに実装
+                    alert('QRコードの画像がダウンロードされました。');
+                } else {
+                    alert('共有URLが生成されていません。');
+                }
+            });
+        }
+    }
+
+    // ZIPファイル作成ボタンのクリックイベント
+    if (zipCreateButton) {
+        zipCreateButton.addEventListener('click', () => {
+            let filename = zipFilenameInput.value;
+            
+            // ファイル名が未入力の場合は自動生成
+            if (!filename) {
+                filename = generateDefaultZipFilename();
+                zipFilenameInput.value = filename;
+            }
+
+            // ファイル名を表示
+            if (zipDisplayFilename) {
+                zipDisplayFilename.textContent = `${filename}.zip`;
+            }
+
+            // 共有情報セクションを表示
+            if (zipShareInfo) {
+                zipShareInfo.style.display = 'block';
+            }
+
+            // 期限とファイル数を更新
+            if (zipExpiryTime) {
+                // 全てのアップロードされたファイルの期限を取得
+                const resultContents = document.getElementById('result-contents');
+                const allExpiryTimes = [];
+                
+                // 既存のファイルの期限を収集
+                resultContents.querySelectorAll('.uploaded-filename span').forEach(span => {
+                    const expiryText = span.textContent;
+                    if (expiryText && expiryText.includes('期限: ')) {
+                        const dateStr = expiryText.replace('期限: ', '');
+                        allExpiryTimes.push(new Date(dateStr));
+                    }
+                });
+
+                // ファイル数を取得
+                const totalFiles = resultContents.querySelectorAll('.result-content').length;
+
+                // 最も早い期限を見つける
+                if (allExpiryTimes.length > 0) {
+                    const earliestExpiry = new Date(Math.min(...allExpiryTimes));
+                    const expiryTimeString = earliestExpiry.toLocaleString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    zipExpiryTime.textContent = `期限: ${expiryTimeString}　|　ファイル数: ${totalFiles}個`;
+                }
+            }
+
+            // 共有URLを生成
+            if (zipShareUrl) {
+                zipShareUrl.value = `https://example.com/share/zip/${generateRandomString(10)}`;
+            }
+        });
     }
 });
       

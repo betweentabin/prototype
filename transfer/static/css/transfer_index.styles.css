@@ -259,6 +259,11 @@
   background-color: white;
 }
 
+.form-control::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
 .form-control:focus {
   border-color: var(--primary-color);
   outline: none;
@@ -589,13 +594,13 @@
 }
 
 .qr-code {
-  width: 140px;
+  width: auto;
   height: auto;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  margin: 10px auto; /* 左右のマージンをautoに変更して中央揃え */
 }
 
 .qr-code img {
@@ -721,4 +726,150 @@
   font-size: 0.95rem;
   color: #000;
   font-weight: 700;
+}
+
+/* ===== ZIPファイル設定ボックスのスタイル ===== */
+.zip-content {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.zip-content p {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.zip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zip-filename {
+  display: flex;
+  align-items: center;
+}
+
+.zip-filename .zip-input-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.zip-password {
+  display: flex;
+  align-items: center;
+}
+
+.zip-input-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.zip-input-group input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.zip-input-group input::placeholder {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.zip-extension {
+  color: #666;
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+
+.zip-compression {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zip-compression label {
+  min-width: 100px;
+  font-weight: 500;
+}
+
+.compression-options {
+  display: flex;
+  gap: 15px;
+}
+
+.compression-option {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: 6px 12px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.compression-option:hover {
+  background-color: #e8e8e8;
+}
+
+.compression-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.compression-option input[type="radio"]:checked + .compression-text {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.compression-option input[type="radio"]:checked + .compression-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 1px;
+}
+
+.compression-text {
+  position: relative;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.zip-button-container {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.zip-create-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 5px rgba(74, 107, 223, 0.2);
+}
+
+.zip-create-btn:hover {
+  background-color: #7a8bc7;
+}
+
+.zip-create-btn:active {
+  background-color: #3a5bcf;
 }
