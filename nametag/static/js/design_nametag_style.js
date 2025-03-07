@@ -23,6 +23,15 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
   
+  // QRコードの初期設定
+  lineSettings['qr'] = {
+    'qr-size': '100',
+    'qr-color': '#000000',
+    'horizontal-position': '0',
+    'vertical-position': '0',
+    'cmyk': { c: 100, m: 100, y: 100, k: 0 }
+  };
+  
   // タブ切り替え機能
   const tabLinks = document.querySelectorAll('.tab-link');
   const tabContents = document.querySelectorAll('.tab-content');
@@ -50,44 +59,74 @@ document.addEventListener('DOMContentLoaded', function() {
       const tabId = this.closest('.tab-content').id;
       
       if (tabId === 'font') {
-        if (selectedLine === 'all') {
-          // All選択時は最後に選択されていた行のCMYK値を表示
-          const lastSelectedLine = lineSettings[1]; // デフォルトは1行目の値を使用
-          const cmyk = lastSelectedLine.cmyk;
+        // QRコード選択時の表示切り替え
+        const textSettings = document.getElementById('text-settings');
+        const qrSettings = document.getElementById('qr-settings');
+        
+        if (selectedLine === 'qr') {
+          textSettings.style.display = 'none';
+          qrSettings.style.display = 'block';
+          
+          // QRコードの設定を表示
+          const settings = lineSettings['qr'];
+          document.getElementById('qr-size').value = settings['qr-size'];
+          document.getElementById('qr-color').value = settings['qr-color'];
           
           // CMYKスライダーを更新
-          document.getElementById('font-cyan').value = cmyk.c;
-          document.getElementById('font-magenta').value = cmyk.m;
-          document.getElementById('font-yellow').value = cmyk.y;
-          document.getElementById('font-black').value = cmyk.k;
-          
-          // 値の表示を更新
-          document.querySelectorAll('#font-cyan + .cmyk-value')[0].textContent = `${cmyk.c}%`;
-          document.querySelectorAll('#font-magenta + .cmyk-value')[0].textContent = `${cmyk.m}%`;
-          document.querySelectorAll('#font-yellow + .cmyk-value')[0].textContent = `${cmyk.y}%`;
-          document.querySelectorAll('#font-black + .cmyk-value')[0].textContent = `${cmyk.k}%`;
-          
-          // カラーピッカーも更新
-          document.getElementById('font-color').value = lastSelectedLine['font-color'];
-        } else {
-          // 個別の行選択時は、その行の保存されているCMYK値を表示
-          const settings = lineSettings[selectedLine];
           const cmyk = settings.cmyk;
-          
-          // CMYKスライダーを更新
-          document.getElementById('font-cyan').value = cmyk.c;
-          document.getElementById('font-magenta').value = cmyk.m;
-          document.getElementById('font-yellow').value = cmyk.y;
-          document.getElementById('font-black').value = cmyk.k;
+          document.getElementById('qr-cyan').value = cmyk.c;
+          document.getElementById('qr-magenta').value = cmyk.m;
+          document.getElementById('qr-yellow').value = cmyk.y;
+          document.getElementById('qr-black').value = cmyk.k;
           
           // 値の表示を更新
-          document.querySelectorAll('#font-cyan + .cmyk-value')[0].textContent = `${cmyk.c}%`;
-          document.querySelectorAll('#font-magenta + .cmyk-value')[0].textContent = `${cmyk.m}%`;
-          document.querySelectorAll('#font-yellow + .cmyk-value')[0].textContent = `${cmyk.y}%`;
-          document.querySelectorAll('#font-black + .cmyk-value')[0].textContent = `${cmyk.k}%`;
+          document.querySelectorAll('#qr-cyan + .cmyk-value')[0].textContent = `${cmyk.c}%`;
+          document.querySelectorAll('#qr-magenta + .cmyk-value')[0].textContent = `${cmyk.m}%`;
+          document.querySelectorAll('#qr-yellow + .cmyk-value')[0].textContent = `${cmyk.y}%`;
+          document.querySelectorAll('#qr-black + .cmyk-value')[0].textContent = `${cmyk.k}%`;
+        } else {
+          textSettings.style.display = 'block';
+          qrSettings.style.display = 'none';
           
-          // カラーピッカーも更新
-          document.getElementById('font-color').value = settings['font-color'];
+          if (selectedLine === 'all') {
+            // All選択時は最後に選択されていた行のCMYK値を表示
+            const lastSelectedLine = lineSettings[1];
+            const cmyk = lastSelectedLine.cmyk;
+            
+            // CMYKスライダーを更新
+            document.getElementById('font-cyan').value = cmyk.c;
+            document.getElementById('font-magenta').value = cmyk.m;
+            document.getElementById('font-yellow').value = cmyk.y;
+            document.getElementById('font-black').value = cmyk.k;
+            
+            // 値の表示を更新
+            document.querySelectorAll('#font-cyan + .cmyk-value')[0].textContent = `${cmyk.c}%`;
+            document.querySelectorAll('#font-magenta + .cmyk-value')[0].textContent = `${cmyk.m}%`;
+            document.querySelectorAll('#font-yellow + .cmyk-value')[0].textContent = `${cmyk.y}%`;
+            document.querySelectorAll('#font-black + .cmyk-value')[0].textContent = `${cmyk.k}%`;
+            
+            // カラーピッカーも更新
+            document.getElementById('font-color').value = lastSelectedLine['font-color'];
+          } else {
+            // 個別の行選択時は、その行の保存されているCMYK値を表示
+            const settings = lineSettings[selectedLine];
+            const cmyk = settings.cmyk;
+            
+            // CMYKスライダーを更新
+            document.getElementById('font-cyan').value = cmyk.c;
+            document.getElementById('font-magenta').value = cmyk.m;
+            document.getElementById('font-yellow').value = cmyk.y;
+            document.getElementById('font-black').value = cmyk.k;
+            
+            // 値の表示を更新
+            document.querySelectorAll('#font-cyan + .cmyk-value')[0].textContent = `${cmyk.c}%`;
+            document.querySelectorAll('#font-magenta + .cmyk-value')[0].textContent = `${cmyk.m}%`;
+            document.querySelectorAll('#font-yellow + .cmyk-value')[0].textContent = `${cmyk.y}%`;
+            document.querySelectorAll('#font-black + .cmyk-value')[0].textContent = `${cmyk.k}%`;
+            
+            // カラーピッカーも更新
+            document.getElementById('font-color').value = settings['font-color'];
+          }
         }
       }
       

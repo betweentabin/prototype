@@ -97,44 +97,85 @@
                 <option value="8">8行目</option>
                 <option value="9">9行目</option>
                 <option value="10">10行目</option>
+                <option value="qr">QRコード</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="font-family">フォント</label>
-              <select id="font-family" name="font-family" class="line-specific-setting" data-setting-type="font-family">
-                <option value="sans-serif">ゴシック体</option>
-                <option value="serif">明朝体</option>
-                <option value="monospace">等幅フォント</option>
-              </select>
+            
+            <!-- テキスト行の設定 -->
+            <div id="text-settings" class="settings-group">
+              <div class="form-group">
+                <label for="font-family">フォント</label>
+                <select id="font-family" name="font-family" class="line-specific-setting" data-setting-type="font-family">
+                  <option value="sans-serif">ゴシック体</option>
+                  <option value="serif">明朝体</option>
+                  <option value="monospace">等幅フォント</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="font-size">フォントサイズ</label>
+                <input type="number" id="font-size" name="font-size" value="16" min="8" max="72" class="line-specific-setting" data-setting-type="font-size">
+              </div>
+              <div class="form-group">
+                <label for="font-color">フォント色</label>
+                <div class="color-picker">
+                  <input type="color" id="font-color" name="font-color" value="#000000" class="line-specific-setting" data-setting-type="font-color">
+                  <div class="cmyk-controls">
+                    <div class="cmyk-slider">
+                      <label>C</label>
+                      <input type="range" id="font-cyan" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>M</label>
+                      <input type="range" id="font-magenta" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>Y</label>
+                      <input type="range" id="font-yellow" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>K</label>
+                      <input type="range" id="font-black" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="font-size">フォントサイズ</label>
-              <input type="number" id="font-size" name="font-size" value="16" min="8" max="72" class="line-specific-setting" data-setting-type="font-size">
-            </div>
-            <div class="form-group">
-              <label for="font-color">フォント色</label>
-              <div class="color-picker">
-                <input type="color" id="font-color" name="font-color" value="#000000" class="line-specific-setting" data-setting-type="font-color">
-                <div class="cmyk-controls">
-                  <div class="cmyk-slider">
-                    <label>C</label>
-                    <input type="range" id="font-cyan" min="0" max="100" value="0" class="cmyk-input">
-                    <span class="cmyk-value">0%</span>
-                  </div>
-                  <div class="cmyk-slider">
-                    <label>M</label>
-                    <input type="range" id="font-magenta" min="0" max="100" value="0" class="cmyk-input">
-                    <span class="cmyk-value">0%</span>
-                  </div>
-                  <div class="cmyk-slider">
-                    <label>Y</label>
-                    <input type="range" id="font-yellow" min="0" max="100" value="0" class="cmyk-input">
-                    <span class="cmyk-value">0%</span>
-                  </div>
-                  <div class="cmyk-slider">
-                    <label>K</label>
-                    <input type="range" id="font-black" min="0" max="100" value="0" class="cmyk-input">
-                    <span class="cmyk-value">0%</span>
+
+            <!-- QRコードの設定 -->
+            <div id="qr-settings" class="settings-group" style="display: none;">
+              <div class="form-group">
+                <label for="qr-size">QRコードサイズ</label>
+                <input type="number" id="qr-size" name="qr-size" value="100" min="50" max="200" class="line-specific-setting" data-setting-type="qr-size">
+              </div>
+              <div class="form-group">
+                <label for="qr-color">QRコード色</label>
+                <div class="color-picker">
+                  <input type="color" id="qr-color" name="qr-color" value="#000000" class="line-specific-setting" data-setting-type="qr-color">
+                  <div class="cmyk-controls">
+                    <div class="cmyk-slider">
+                      <label>C</label>
+                      <input type="range" id="qr-cyan" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>M</label>
+                      <input type="range" id="qr-magenta" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>Y</label>
+                      <input type="range" id="qr-yellow" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
+                    <div class="cmyk-slider">
+                      <label>K</label>
+                      <input type="range" id="qr-black" min="0" max="100" value="0" class="cmyk-input">
+                      <span class="cmyk-value">0%</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -157,6 +198,7 @@
                 <option value="8">8行目</option>
                 <option value="9">9行目</option>
                 <option value="10">10行目</option>
+                <option value="qr">QRコード</option>
               </select>
             </div>
             <div class="form-group">
