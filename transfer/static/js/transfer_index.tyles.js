@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="input-wrapper">
                   <div class="input-group password-group">
                     <input type="text" class="form-control download-password" id="download-password-${uniqueId}" placeholder="パスワードを入力（任意）" />
-                    <button class="generate-password-btn" data-target="download-password-${uniqueId}">自動生成</button>
+                    <button class="generate-password-btn" data-target="download-password-${uniqueId}">設定</button>
                     <button class="copy-btn copy-password-btn" data-target="download-password-${uniqueId}">コピー</button>
                   </div>
                 </div>
