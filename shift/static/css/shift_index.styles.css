@@ -24,6 +24,36 @@
   color: var(--text-color);
 }
 
+
+/* ===== 使用方法ボタンのスタイル ===== */
+.howto-btn {
+  background-color: #e0e5f5; /* 背景色: 薄い青色に変更 */
+  color: #4a6bdf;            /* 文字色: プライマリカラーに変更 */
+  border: 1px solid #d0d8f0;  /* 枠線: 薄い色の細い枠線を追加 */
+  border-radius: 4px;         /* 角の丸み: 4pxに縮小 */
+  padding: 4px 20px;          /* 内側の余白: 上下4px、左右10pxに縮小 */
+  font-size: 0.75rem;         /* 文字サイズ: 0.75remに縮小 */
+  font-weight: normal;        /* 文字の太さ: 通常に変更 */
+  cursor: pointer;            /* マウスカーソル: ポインター */
+  transition: all 0.2s ease;  /* トランジション: すべてのプロパティに適用 */
+  position: absolute;         /* 位置: 絶対位置 */
+  right: 20px;                /* 右からの距離: 20px */
+  top: 50%;                   /* 上からの距離: 50% */
+  transform: translateY(-50%); /* Y軸方向の位置調整: 中央揃え */
+  z-index: 10;                /* 重なり順序: 前面に表示 */
+  box-shadow: none;           /* 影: なし */
+}
+
+.howto-btn:hover {
+  background-color: #eef1fa; /* ホバー時の背景色: さらに薄い色 */
+  color: #5a79e5;            /* ホバー時の文字色: 少し濃い色 */
+}
+
+.howto-btn:active {
+  background-color: #d0d8f0; /* クリック時の背景色: 少し濃い色 */
+}
+
+
 /* 入力グループのスタイル */
 .input-group {
   display: flex;
