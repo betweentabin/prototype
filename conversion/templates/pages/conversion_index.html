@@ -96,8 +96,11 @@
             <span class="box1box-text">形式変換</span>
           </div>
         </div>
+
+        <!-- 使用方法ボタン -->
         <div class="right-container">
           <div class="box2"></div>
+          <button id="howto-btn" class="howto-btn">使用方法</button>
           <div class="box3"></div>
         </div>
       </div>
@@ -144,15 +147,15 @@
                   </div>
                 </div>
                 
-                <!-- 品質設定 -->
-                <label>品質設定</label>
+                <!-- 解像度設定 -->
+                <label>解像度設定</label>
                 <div class="position-inputs">
                   <div class="input-wrapper">
                     <div class="input-group">
                       <select class="form-control" name="quality">
-                        <option value="high">高品質（大きいファイルサイズ）</option>
-                        <option value="medium" selected>標準</option>
-                        <option value="low">低品質（小さいファイルサイズ）</option>
+                        <option value="original">オリジナル（元のファイルと同じ解像度）</option>
+                        <option value="print">印刷物（DPI：350）</option>
+                        <option value="web">Web（DPI：96）</option>
                       </select>
                     </div>
                   </div>
@@ -160,11 +163,11 @@
                 
                 <!-- 品質設定の注意書き -->
                 <div class="quality-note">
-                  <p>※画質設定の目安</p>
+                  <p>※解像度設定の目安</p>
                   <ul>
-                    <li>高品質：元のファイルと同じ解像度（DPI：300）</li>
-                    <li>標準：標準的な画質（DPI：200）</li>
-                    <li>低品質：Web表示向け（DPI：96）</li>
+                    <li>オリジナル：元のファイルと同じ解像度</li>
+                    <li>印刷物：印刷物向けな解像度（DPI：350）</li>
+                    <li>Web：Web表示向けな解像度（DPI：96）</li>
                   </ul>
                 </div>
               </div>
