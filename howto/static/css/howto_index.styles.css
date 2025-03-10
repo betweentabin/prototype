@@ -1,0 +1,359 @@
+/**
+ * 主なセクション:
+ * - 校正機能カード: 文章校正機能を選択するカードのスタイル
+ * - 校正機能セクション: 各文章校正機能のUIスタイル
+ */
+ 
+
+
+/* ===== 校正機能カードのスタイル ===== */
+/* 文章校正機能（ファイル校正・テキスト校正）を選択するカードのコンテナ */
+.pdf-functions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4列のグリッド */
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 個々の校正機能カードのスタイル */
+.pdf-function-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: 0 2px 15px rgba(139, 156, 219, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* 校正機能カードのホバー時のスタイル */
+.pdf-function-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(139, 156, 219, 0.25);
+  background-color: var(--background-color);
+}
+
+/* アクティブ状態の校正機能カードのスタイル */
+.pdf-function-card.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* アクティブカード内のテキスト要素のスタイル */
+.pdf-function-card.active h3 {
+  color: white;
+}
+
+/* 校正機能カード内の見出しスタイル */
+.pdf-function-card h3 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1200px) {
+  .pdf-functions {
+    grid-template-columns: repeat(3, 1fr); /* 3列に変更 */
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-functions {
+    grid-template-columns: repeat(2, 1fr); /* 2列に変更 */
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-functions {
+    grid-template-columns: 1fr; /* 1列に変更 */
+  }
+}
+
+/* 校正機能カード内のアイコンスタイル */
+.pdf-icon {
+  font-size: 2.5rem;                  /* アイコンサイズ */
+  margin-bottom: 1rem;                /* 下部の余白 */
+  color: var(--primary-color);        /* アイコン色 */
+}
+
+/* 校正機能カード内の説明文スタイル */
+.pdf-function-card p {
+  color: #666;                        /* テキスト色 */
+  font-size: 0.9rem;                  /* フォントサイズ */
+}
+
+
+
+/* ===== 校正機能セクションのスタイル ===== */
+/* 文章校正機能（ファイル校正・テキスト校正）の詳細UIを表示するコンテナ */
+.pdf-tool-sections {
+  margin-top: 2rem;                   /* 上部の余白 */
+  background-color: white;            /* 背景色は白 */
+  border-radius: var(--border-radius); /* 角を丸くする */
+  padding: 2rem;                      /* 内側の余白 */
+  box-shadow: 0 2px 15px rgba(139, 156, 219, 0.15); /* 影をつける */
+}
+
+/* 個々の校正機能セクションのスタイル - 初期状態は非表示 */
+.pdf-tool-section {
+  display: none;                      /* 初期状態では非表示 */
+  margin-bottom: 2rem;                /* 下部の余白 */
+}
+
+/* アクティブ状態の校正機能セクションのスタイル - 選択された機能のUIを表示 */
+.pdf-tool-section.active {
+  display: block;                     /* 表示状態に切り替え */
+  animation: fadeIn 0.5s ease-in-out; /* フェードインアニメーション */
+}
+
+/* フェードインアニメーションの定義 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); } /* 開始状態 */
+  to { opacity: 1; transform: translateY(0); }       /* 終了状態 */
+}
+
+
+
+/* ===== ドラッグ＆ドロップのスタイル ===== */
+.drag-drop-container {
+  background-color: #f9f9f9;  /* 背景色: 薄いグレー */
+  border: 2px dashed #ccc;    /* 枠線: 2pxの破線、色は薄いグレー */
+  border-radius: 10px;        /* 角の丸み: 10px */
+  padding: 20px;              /* 内側の余白: 上下左右40px（より大きく） */
+  text-align: center;         /* テキスト配置: 中央揃え */
+  margin-top: 30px;           /* 上側の外余白: 30px */
+  cursor: pointer;            /* マウスカーソル: ポインター（クリック可能を示す） */
+  transition: all 0.3s ease;  /* トランジション: すべてのプロパティに0.3秒のイージング */
+}
+
+.drag-drop-container:hover {
+  background-color: #f0f5ff;  /* ホバー時の背景色: 薄い青 */
+  border-color: var(--secondary-color); /* ホバー時の枠線色: セカンダリカラー */
+}
+
+.drag-drop-container p {
+  margin: 0;                  /* 段落の余白: なし */
+  font-size: 1.2rem;          /* 文字サイズ: 1.2rem */
+  color: #666;                /* 文字色: 中間グレー */
+}
+
+.drag-drop-container::after {
+  content: "または、クリックしてファイルを選択";  /* 追加テキスト */
+  display: block;             /* 表示: ブロック要素として */
+  font-size: 0.9rem;          /* 文字サイズ: 0.9rem（小さめ） */
+  color: #999;                /* 文字色: 薄いグレー */
+  margin-top: 10px;           /* 上側の余白: 10px */
+}
+
+
+
+/* ===== アップロードボタンのスタイル ===== */
+.upload-button-container1,
+.upload-button-container2 {
+  margin-top: 30px;           /* 上側の余白: 30px */
+  text-align: center;         /* テキスト配置: 中央揃え */
+}
+
+.upload-btn {
+  background-color: var(--primary-color, #4a6bdf); /* 背景色: プライマリカラー */
+  color: white;               /* 文字色: 白 */
+  border: none;               /* 枠線: なし */
+  border-radius: 5px;         /* 角の丸み: 5px */
+  padding: 12px 30px;         /* 内側の余白: 上下12px、左右30px */
+  font-size: 1rem;            /* 文字サイズ: 1rem */
+  font-weight: bold;          /* 文字の太さ: 太字 */
+  cursor: pointer;            /* マウスカーソル: ポインター */
+  transition: background-color 0.2s ease; /* トランジション: 背景色のみ変化 */
+  box-shadow: 0 2px 5px rgba(74, 107, 223, 0.2); /* 影: 控えめな影 */
+}
+
+.upload-btn:hover {
+  background-color: #7a8bc7; /* ホバー時の背景色: プライマリカラーより薄い色 */
+}
+
+.upload-btn:active {
+  background-color: #3a5bcf; /* クリック時の背景色: プライマリカラーより濃い色 */
+}
+
+
+
+/* ===== テキスト校正のスタイル ===== */
+.style-selector {
+  margin-bottom: 15px;
+}
+
+.text-input-container label {
+  font-weight: bold;
+}
+
+.text-input-container select,
+.text-input-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.text-input-container select:focus,
+.text-input-container textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139, 156, 219, 0.2);
+}
+
+.text-input-container > div {
+  margin-bottom: 30px;
+}
+
+/* 基本的なフォームスタイル */
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
+  margin-top: 10px;
+}
+
+/* プルダウンのデフォルト表示のスタイル */
+select.form-control option:disabled {
+  color: #999;
+  display: none; /* 選択肢として表示しない */
+}
+
+/* 選択されているがdisabledなオプションの色（初期表示用） */
+select.form-control:invalid,
+select.form-control option[disabled][selected] {
+  color: #999 !important;
+}
+
+/* 通常のオプションは標準色で表示 */
+select.form-control option:not([disabled]) {
+  color: #333;
+}
+
+/* プレースホルダーのスタイル */
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* ===== 使用方法ガイドのスタイル ===== */
+.guide-content {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.guide-content h3 {
+  color: var(--primary-color);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.guide-content p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.guide-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.guide-content ul li {
+  padding: 0.1rem 0;
+  color: #666;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.guide-content ul li::before {
+  content: "✓";
+  position: absolute;
+  left: -1rem;
+  color: var(--primary-color);
+}
+
+/* 機能説明セクションの新しいスタイル */
+.feature-overview, .usage-steps {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 8px 8px 0;
+}
+
+.feature-overview h3, .usage-steps h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-overview p {
+  margin: 0;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+.usage-steps ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.usage-steps li {
+  color: #4a5568;
+  line-height: 1.5;
+  position: relative;
+  list-style-type: none;
+  margin-bottom: 0.3rem;
+}
+
+.usage-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.usage-steps li::before {
+  content: "→";
+  position: absolute;
+  left: -1.5rem;
+  color: var(--primary-color);
+}
+
+/* PDFツール操作ブロックのスタイル */
+.pdf-operations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pdf-operation-block {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pdf-operation-block:last-child {
+  border-bottom: none;
+}
+
+.pdf-operation-block h4 {
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.pdf-operation-block ul {
+  margin: 0;
+}

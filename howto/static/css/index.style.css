@@ -1,0 +1,454 @@
+/** 
+ * 主なセクション:
+ * - 基本変数とリセット: カラー変数や基本スタイルのリセット
+ * - ヘッダーとナビゲーション: サイトヘッダーとナビゲーションメニュー
+ * - 機能カード: 各機能を表示するカードのスタイル
+ * - フォームセクション: フォームのスタイル
+ * - レスポンシブデザイン: 画面サイズに応じたスタイル調整
+ * - レスポンシブブレイクポイント:
+ * - 1200px: 大画面
+ * - 992px: タブレット横向き
+ * - 768px: タブレット縦向き
+ * - 576px: スマートフォン
+ * - エラーメッセージ: エラーメッセージのスタイル
+ */
+
+
+
+ /* ===== 基本変数とリセット ===== */
+:root {
+    --primary-color: #8B9CDB;    /* メインカラー */
+    --secondary-color: #B7C4FF;  /* サブカラー */
+    --tertiary-color: #F0F0F0;   /* 第三カラー */
+    --background-color: #F5F7FF; /* 背景色 */
+    --text-color: #333;          /* テキスト色 */
+    --border-radius: 30px;       /* 角丸の半径 */
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #F5F7FF;
+  }
+
+
+
+/* ===== ヘッダーとナビゲーション ===== */
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 8rem 2rem;
+    background-color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    background-image: url('EPBG2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  header {
+    background-color: rgba(var(--primary-color), 0.8);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: flex-start; /* 左寄せに変更 */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .explore-btn {
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.8rem 3rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .explore-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+
+
+/* ===== 機能カードのスタイル ===== */
+.features {
+    padding: 2rem 2rem;
+    background-color: var(--background-color);
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 0.8rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .feature-card {
+    background-color: white;
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(139, 156, 219, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 25px rgba(139, 156, 219, 0.2);
+    background-color: var(--background-color);
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+  }
+  
+  .feature-card p {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+
+
+
+/* ===== フォームセクションのスタイル ===== */
+.form-section {
+  padding: 2rem 2rem;
+  background-color: #ffffff;
+  max-width: 900px;
+  border-radius: var(--border-radius);
+  margin: 0rem auto 2rem;
+}
+
+.top-container {
+  padding: 0rem 0rem;
+  background-color: #ffffff;
+  max-width: 900px;
+  height: 80px;
+  border-radius: 30px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0rem;
+  position: relative;
+}
+
+.left-container {
+  display: flex;
+  width: 40%;
+  position: relative;
+  z-index: 2;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  position: relative;
+  z-index: 1;
+}
+
+.box1 {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+  border-radius: 30px 30px 30px 30px;
+  margin: 0px;
+  padding: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  border: 0px solid #ccc;
+  position: relative;
+}
+
+.box1box {
+  background-color: var(--secondary-color);
+  width: 90%;
+  height: 70%;
+  border-radius: 30px 30px 30px 30px;
+  margin: 0px;
+  padding: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  border: 0px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box1box-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.box2, .box3 {
+  height: 50%;
+  margin: 0px;
+  padding: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  border: 0px solid #ccc;
+}
+
+.box2 {
+  background-color: var(--tertiary-color);
+  width: 100%;
+  margin-bottom: 0rem;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.box3 {
+  width: 115%;
+  background-color: var(--tertiary-color);
+  border-radius: 0px;
+  position: absolute;
+  left: -15%;
+  top: 50%;
+  transform: translateY(0%);
+  z-index: 1;
+}
+
+.bottom-container {
+  background-color: var(--tertiary-color);
+  max-width: 900px;
+  border-radius: 30px 0px 30px 30px;
+  margin: 0 auto;
+}
+
+.box4 {
+  width: 100%;
+  background-color: var(--tertiary-color);
+  padding: 3rem;
+  border-radius: 30px 0px 30px 30px;
+}
+
+.box4 h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.form-description {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 16px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.drag-drop-container {
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px; /* 上とのスペース */
+  cursor: pointer;
+}
+
+.drag-drop-container p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  background-color: white;
+}
+
+
+
+/* ===== アクティブカードのスタイル ===== */
+/* 選択中の機能カードを視覚的に区別するためのスタイル */
+.feature-card.active {
+    background-color: var(--secondary-color); /* 選択中は背景色を変更 */
+    color: white;                             /* テキスト色を白に */
+    transition: none;                         /* アニメーション効果を無効化 */
+    cursor: default;                          /* カーソルをデフォルトに */
+  }
+
+  /* アクティブカードのホバー時の特別スタイル（通常のホバー効果を無効化） */
+.feature-card.active:hover {
+    background-color: var(--secondary-color); /* ホバー時も背景色を維持 */
+    color: white;                             /* テキスト色を維持 */
+    transform: none;                          /* 変形効果を無効化 */
+    box-shadow: none;                         /* 影効果を無効化 */
+  }
+  
+  /* アクティブカード内の見出しスタイル */
+  .feature-card.active h3 {
+    color: white;                             /* 見出しのテキスト色を白に */
+  }
+
+
+
+  /* ===== レスポンシブデザイン ===== */
+@media (max-width: 1200px) {
+    /* 大画面向けの調整 */
+    .feature-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4列のグリッド */
+      grid-template-rows: repeat(2, auto);   /* 2行のグリッド */
+    }
+  }
+  
+  @media (max-width: 992px) {
+    /* タブレット横向き向けの調整 */
+    .feature-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4列のグリッド */
+      grid-template-rows: repeat(2, auto);   /* 2行のグリッド */
+      gap: 0.6rem;                           /* カード間の間隔を狭く */
+    }
+    
+    .feature-card {
+      padding: 0.7rem;                       /* 内側の余白を小さく */
+    }
+    
+    .feature-card h3 {
+      font-size: 0.85rem;                    /* フォントサイズを小さく */
+    }
+    
+    .feature-card p {
+      font-size: 0.7rem;                     /* フォントサイズを小さく */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* タブレット縦向き向けの調整 */
+    .hero h1 {
+      font-size: 2.5rem;                     /* フォントサイズを小さく */
+    }
+  
+    .hero {
+      padding: 4rem 2rem;                    /* 内側の余白を小さく */
+      min-height: 400px;                     /* 最小高さを小さく */
+      background-size: 150% auto;            /* 背景サイズを調整 */
+    }
+  
+    .feature-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4列のグリッド */
+      grid-template-rows: repeat(2, auto);   /* 2行のグリッド */
+      gap: 0.5rem;                           /* カード間の間隔をさらに狭く */
+    }
+    
+    .feature-card {
+      padding: 0.6rem;                       /* 内側の余白をさらに小さく */
+    }
+    
+    .feature-card h3 {
+      font-size: 0.8rem;                     /* フォントサイズをさらに小さく */
+    }
+    
+    .feature-card p {
+      font-size: 0.7rem;                     /* フォントサイズを小さく */
+    }
+  
+    .form-container {
+      padding: 1.5rem;
+    }
+  
+    .tabs {
+      justify-content: flex-start;
+    }
+  
+    .box1box-text {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* スマートフォン向けの調整 */
+    .feature-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4列のグリッド */
+      grid-template-rows: repeat(2, auto);   /* 2行のグリッド */
+      gap: 0.3rem;                           /* カード間の間隔を最小に */
+    }
+    
+    .feature-card {
+      padding: 0.4rem;                       /* 内側の余白を最小に */
+    }
+    
+    .icon {
+      font-size: 1.2rem;                     /* アイコンサイズを小さく */
+      margin-bottom: 0.3rem;                 /* 下部の余白を小さく */
+    }
+    
+    .feature-card h3 {
+      font-size: 0.7rem;                     /* フォントサイズを最小に */
+      margin-bottom: 0.3rem;                 /* 下部の余白を小さく */
+    }
+    
+    .feature-card p {
+      font-size: 0.6rem;                     /* フォントサイズを最小に */
+      margin-bottom: 0.2rem;                 /* 下部の余白を小さく */
+    }
+  
+    .box1box-text {
+      font-size: 0.9rem;
+    }
+  }
+
+
+
+  /* ===== エラーメッセージのスタイル ===== */
+.error {
+    color: #e74c3c;                          /* 赤色のテキスト */
+    text-align: center;                      /* 中央揃え */
+    padding: 1rem;                           /* 内側の余白 */
+    font-weight: bold;                       /* 太字 */
+  }
