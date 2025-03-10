@@ -1,0 +1,27 @@
+static/                          # 静的ファイル用ディレクトリ
+├── css/                        # スタイルシート用ディレクトリ
+│   ├── components/            # 共通コンポーネントのスタイル
+│   │   ├── header.styles.css  # ヘッダー部分のデザイン
+│   │   └── footer.styles.css  # フッター部分のデザイン
+│   └── pages/                 # 各ページ固有のスタイル
+│       ├── index.style.css    # トップページのデザイン
+│       ├── contact.styles.css # お問い合わせページのデザイン
+│       ├── terms.styles.css   # 利用規約ページのデザイン
+│       └── guidelines.styles.css # ガイドラインページのデザイン
+└── js/                        # JavaScript用ディレクトリ
+    ├── components/            # 共通コンポーネントの機能
+    │   ├── header.js         # ヘッダーの動作（メニュー開閉、ページ遷移など）
+    │   └── footer.js         # フッターの動作
+    └── pages/                 # 各ページ固有の機能
+        ├── contact.js        # お問い合わせフォームの処理
+        └── index.style.js    # トップページの機能（カード操作など）
+
+templates/                     # HTMLテンプレート用ディレクトリ
+├── components/               # 共通コンポーネントのHTML
+│   ├── header.html          # ヘッダー部分のHTML（ロゴ、メニューなど）
+│   └── footer.html          # フッター部分のHTML（コピーライトなど）
+└── pages/                   # 各ページのHTML
+    ├── index.html           # トップページ（機能一覧）
+    ├── contact.html         # お問い合わせページ
+    ├── terms.html           # 利用規約ページ
+    └── guidelines.html      # ユーザーガイドラインページ

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <!-- ===== ヘッダーセクション ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="/">
+          <img src="/static/images/ヘッダーロゴ.png" alt="Efficepart Logo" />
+        </a>
+      </div>
+      <button class="hamburger-menu" aria-label="メニュー" id="menuButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- モーダルメニュー -->
+  <div class="modal-menu" id="modalMenu">
+    <div class="modal-content">
+      <div class="modal-logo">
+        <img src="/static/images/モーダルメニューロゴ.png" alt="Modal Menu Logo" />
+      </div>
+      <button class="close-button" id="closeButton">×</button>
+      <nav class="modal-nav">
+        <ul>
+          <li><a href="/toc_index">目次生成</a></li>
+          <li><a href="#">文章校正</a></li>
+          <li><a href="/shift">休憩シフト</a></li>
+          <li><a href="/nametag">名札生成</a></li>
+          <li><a href="/format">形式変換</a></li>
+          <li><a href="#">圧縮転送</a></li>
+          <li><a href="/pdf">PDFツール</a></li>
+          <li><a href="/help">使用方法</a></li>
+        </ul>
+      </nav>
+      <div class="others-section">others</div>
+      <div class="footer-links">
+        <a href="/contact" class="footer-link" id="contactLink">お問い合わせ</a>
+        <a href="/terms" class="footer-link">利用規約</a>
+        <a href="/guidelines" class="footer-link">ユーザーガイドライン</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

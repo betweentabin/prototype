@@ -1,0 +1,102 @@
+/* ユーザーガイドラインページのスタイル */
+.guidelines-section {
+  padding: 120px 20px 60px;
+  background-color: var(--background-color);
+  min-height: calc(100vh - 40px - 80px); /* ヘッダーとフッターの高さを引く */
+}
+
+.guidelines-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 20px rgba(139, 156, 219, 0.1);
+}
+
+.guidelines-container h1 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.guidelines-content {
+  margin-top: 2rem;
+}
+
+.guidelines-content section {
+  margin-bottom: 2.5rem;
+}
+
+.guidelines-content h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.guidelines-content h3 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.guidelines-content p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.guidelines-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.guidelines-content li {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .guidelines-section {
+    padding: 100px 15px 40px;
+  }
+
+  .guidelines-container {
+    padding: 30px 20px;
+  }
+
+  .guidelines-container h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .guidelines-container {
+    padding: 20px 15px;
+  }
+
+  .guidelines-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .guidelines-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .guidelines-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .guidelines-content p,
+  .guidelines-content li {
+    font-size: 0.9rem;
+  }
+} 

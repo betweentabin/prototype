@@ -1,68 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>目次生成 - Efficiency Expert</title>
+  <title>Efficiency Expert</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- 外部CSSファイルの読み込み -->
-  <link rel="stylesheet" href="/static/css/index.style.css" />
-  <link rel="stylesheet" href="/static/css/toc_index.styles.css" />
-  <!-- PDF.jsライブラリの読み込み -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
-  
-  <!-- 外部JavaScriptファイルを読み込む -->
-  <script src="/static/js/toc_index.tyles.js"></script>
+  <link rel="stylesheet" href="/static/css/pages/index.style.css" />
+  <link rel="stylesheet" href="/static/css/components/header.styles.css" />
+  <link rel="stylesheet" href="/static/css/components/footer.styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
 </head>
 <body>
-  
-  <!-- ===== ヘッダーセクション ===== -->
-  <header>
-    <nav>
-      <div class="logo">
-        <a href="/">
-          <img src="/static/images/ヘッダーロゴ.png" alt="Efficepart Logo" />
-        </a>
-      </div>
-      <button class="hamburger-menu" aria-label="メニュー" id="menuButton">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- モーダルメニュー -->
-  <div class="modal-menu" id="modalMenu">
-    <div class="modal-content">
-      <div class="modal-logo">
-        <img src="/static/images/モーダルメニューロゴ.png" alt="Modal Menu Logo" />
-      </div>
-      <button class="close-button" id="closeButton">×</button>
-      <nav class="modal-nav">
-        <ul>
-          <li><a href="index-generator.html">目次生成</a></li>
-          <li><a href="#">文章校正</a></li>
-          <li><a href="shift-scheduler.html">休憩シフト</a></li>
-          <li><a href="nametag-manual-form.html">名札生成</a></li>
-          <li><a href="nametag-generator.html">形式変換</a></li>
-          <li><a href="#">圧縮転送</a></li>
-          <li><a href="pdf_index.html">PDFツール</a></li>
-          <li><a href="how-to-use.html">使用方法</a></li>
-        </ul>
-      </nav>
-      <div class="others-section">others</div>
-      <div class="footer-links">
-        <a href="#" class="footer-link">お問い合わせ</a>
-        <a href="#" class="footer-link">利用規約</a>
-        <a href="#" class="footer-link">ユーザーガイドライン</a>
-      </div>
-    </div>
-  </div>
+  <!-- 共通ヘッダーの読み込み -->
+  <div id="header-container"></div>
 
   <main>
     <!-- ===== ヒーローセクション ===== -->
     <section class="hero">
+      <img src="/static/images/メインビジュアル.png" alt="メインビジュアル" class="hero-image">
       <h1>Efficiency Expert</h1>
       <p class="subtitle">日々進化するタスクの解決にはエフィスパート</p>
       <button class="explore-btn">Explore</button>
@@ -72,7 +37,7 @@
     <section class="features">
       <div class="feature-grid">
         <!-- 各機能カード -->
-        <div class="feature-card" id="indexcard" data-card-type="目次生成" onclick="window.location.href='index-generator.html'">
+        <div class="feature-card" id="indexcard" data-card-type="目次生成" onclick="window.location.href='/toc_index'">
           <div class="icon">🌐</div>
           <h3>目次生成</h3>
           <p>Generates an index for manuals.</p>
@@ -82,17 +47,17 @@
           <h3>文章校正</h3>
           <p>Proofreads and suggests content.</p>
         </div>
-        <div class="feature-card" id="breakcard" data-card-type="休憩シフト" onclick="window.location.href='shift-scheduler.html'">
+        <div class="feature-card" id="breakcard" data-card-type="休憩シフト" onclick="window.location.href='/shift'">
           <div class="icon">👥</div>
           <h3>休憩シフト</h3>
           <p>Creates optimized schedules.</p>
         </div>
-        <div class="feature-card" id="namecard" data-card-type="名札生成" onclick="window.location.href='nametag-manual-form.html'">
+        <div class="feature-card" id="namecard" data-card-type="名札生成" onclick="window.location.href='/nametag'">
           <div class="icon">🏷️</div>
           <h3>名札生成</h3>
           <p>Generates name tags data.</p>
         </div>        
-        <div class="feature-card" id="formatcard" data-card-type="形式変換" onclick="window.location.href='nametag-generator.html'">
+        <div class="feature-card" id="formatcard" data-card-type="形式変換" onclick="window.location.href='/format'">
           <div class="icon">📄</div>
           <h3>形式変換</h3>
           <p>Converts file formats.</p>
@@ -102,12 +67,12 @@
           <h3>圧縮転送</h3>
           <p>Compresses and shares files.</p>
         </div>
-        <div class="feature-card" id="pdftool1" data-card-type="PDFツール" onclick="window.location.href='pdf_index.html'">
+        <div class="feature-card" id="pdftool1" data-card-type="PDFツール" onclick="window.location.href='/pdf'">
           <div class="icon">📑</div>
           <h3>PDFツール</h3>
           <p>Edit and process PDF files.</p>
         </div>
-        <div class="feature-card" id="howtouse" data-card-type="使用方法" onclick="window.location.href='how-to-use.html'">
+        <div class="feature-card" id="howtouse" data-card-type="使用方法" onclick="window.location.href='/help'">
           <div class="icon">❔</div>
           <h3>使用方法</h3>
           <p>How to use this service.</p>
@@ -116,43 +81,12 @@
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 by CARSON Co.,Ltd.</p>
-  </footer>
+  <!-- 共通フッターの読み込み -->
+  <div id="footer-container"></div>
 
-  <!-- モーダルメニューの制御 -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuButton = document.getElementById('menuButton');
-      const modalMenu = document.getElementById('modalMenu');
-      const closeButton = document.getElementById('closeButton');
-
-      menuButton.addEventListener('click', () => {
-        modalMenu.classList.add('active');
-        document.body.style.overflow = 'hidden'; // スクロール防止
-      });
-
-      closeButton.addEventListener('click', () => {
-        modalMenu.classList.remove('active');
-        document.body.style.overflow = ''; // スクロール再開
-      });
-
-      // モーダル外クリックで閉じる
-      modalMenu.addEventListener('click', (e) => {
-        if (e.target === modalMenu) {
-          modalMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-
-      // ESCキーでモーダルを閉じる
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalMenu.classList.contains('active')) {
-          modalMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-    });
-  </script>
+  <!-- JavaScriptファイルの読み込み -->
+  <script src="/static/js/components/header.js"></script>
+  <script src="/static/js/components/footer.js"></script>
+  <script src="/static/js/pages/index.style.js"></script>
 </body>
 </html>

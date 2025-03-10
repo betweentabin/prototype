@@ -1,0 +1,31 @@
+/* ===== フッターのスタイル ===== */
+footer {
+  background-color: white;
+  padding: 2rem;
+  text-align: center;
+  margin-top: auto;
+  box-shadow: 0 -2px 20px rgba(139, 156, 219, 0.1);
+}
+
+footer p {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem;
+  }
+  
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 1rem;
+  }
+} 

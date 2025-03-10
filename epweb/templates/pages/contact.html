@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>お問い合わせ - Efficiency Expert</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 外部CSSファイルの読み込み -->
+  <link rel="stylesheet" href="/static/css/pages/index.style.css" />
+  <link rel="stylesheet" href="/static/css/components/header.styles.css" />
+  <link rel="stylesheet" href="/static/css/components/footer.styles.css" />
+  <link rel="stylesheet" href="/static/css/pages/contact.styles.css" />
+</head>
+<body>
+  <!-- 共通ヘッダーの読み込み -->
+  <div id="header-container"></div>
+
+  <main>
+    <!-- ===== お問い合わせフォームセクション ===== -->
+    <section class="contact-section">
+      <div class="contact-container">
+        <h1>お問い合わせ</h1>
+        <p class="contact-description">
+          ご質問・ご要望などございましたら、下記フォームよりお気軽にお問い合わせください。
+        </p>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">お名前 <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">メールアドレス <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">会社名</label>
+            <input type="text" id="company" name="company">
+          </div>
+
+          <div class="form-group">
+            <label for="service">お問い合わせ機能 <span class="required">*</span></label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected hidden>機能を選択してください</option>
+              <option value="index-generator">目次生成</option>
+              <option value="proofreading">文章校正</option>
+              <option value="shift-scheduler">休憩シフト</option>
+              <option value="nametag-generator">名札生成</option>
+              <option value="format-converter">形式変換</option>
+              <option value="file-transfer">圧縮転送</option>
+              <option value="pdf-tools">PDFツール</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">件名 <span class="required">*</span></label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <div class="form-group privacy-policy">
+            <label class="checkbox-container">
+              <input type="checkbox" id="privacy" name="privacy" required>
+              <span class="checkmark"></span>
+              プライバシーポリシーに同意する
+            </label>
+          </div>
+
+          <button type="submit" class="submit-button">送信する</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 共通フッターの読み込み -->
+  <div id="footer-container"></div>
+
+  <!-- JavaScriptファイルの読み込み -->
+  <script src="/static/js/components/header.js"></script>
+  <script src="/static/js/components/footer.js"></script>
+  <script src="/static/js/pages/contact.js"></script>
+</body>
+</html> 
